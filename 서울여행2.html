@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>서울 가족여행 2박3일 플래너</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@300;400;500;700&display=swap" rel="stylesheet">
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:'Pretendard', sans-serif;
+    background:#f4f7fb;
+    color:#222;
+    line-height:1.6;
+}
+
+header{
+    background:linear-gradient(135deg,#3b82f6,#6366f1);
+    color:white;
+    padding:50px 20px;
+    text-align:center;
+}
+
+header h1{
+    font-size:40px;
+    margin-bottom:10px;
+}
+
+header p{
+    opacity:0.9;
+    font-size:18px;
+}
+
+.container{
+    max-width:1300px;
+    margin:auto;
+    padding:30px 20px 80px;
+}
+
+.day-section{
+    margin-bottom:50px;
+}
+
+.day-title{
+    font-size:32px;
+    margin-bottom:25px;
+    color:#1e3a8a;
+}
+
+.schedule-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:25px;
+}
+
+.card{
+    background:white;
+    border-radius:20px;
+    overflow:hidden;
+    box-shadow:0 10px 25px rgba(0,0,0,0.08);
+    transition:0.3s;
+}
+
+.card:hover{
+    transform:translateY(-5px);
+}
+
+.card img{
+    width:100%;
+    height:240px;
+    object-fit:cover;
+}
+
+.card-content{
+    padding:22px;
+}
+
+.card-content h3{
+    font-size:24px;
+    margin-bottom:10px;
+    color:#111827;
+}
+
+.card-content p{
+    color:#4b5563;
+    margin-bottom:15px;
+}
+
+.time-badge{
+    display:inline-block;
+    background:#dbeafe;
+    color:#1d4ed8;
+    padding:6px 12px;
+    border-radius:50px;
+    font-size:14px;
+    margin-bottom:12px;
+}
+
+.recommend-btn{
+    background:#2563eb;
+    color:white;
+    border:none;
+    padding:12px 18px;
+    border-radius:12px;
+    cursor:pointer;
+    font-weight:600;
+    transition:0.3s;
+}
+
+.recommend-btn:hover{
+    background:#1d4ed8;
+}
+
+.modal{
+    display:none;
+    position:fixed;
+    z-index:1000;
+    left:0;
+    top:0;
+    width:100%;
+    height:100%;
+    overflow:auto;
+    background:rgba(0,0,0,0.65);
+    padding:40px 20px;
+}
+
+.modal-content{
+    background:white;
+    max-width:1100px;
+    margin:auto;
+    border-radius:20px;
+    padding:30px;
+    position:relative;
+}
+
+.close{
+    position:absolute;
+    right:20px;
+    top:15px;
+    font-size:30px;
+    cursor:pointer;
+}
+
+.recommend-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    gap:25px;
+    margin-top:20px;
+}
+
+.recommend-card{
+    border:1px solid #e5e7eb;
+    border-radius:18px;
+    overflow:hidden;
+    background:#fff;
+}
+
+.recommend-card img{
+    width:100%;
+    height:220px;
+    object-fit:cover;
+}
+
+.rec-content{
+    padding:18px;
+}
+
+.rec-content h4{
+    margin-bottom:10px;
+    font-size:22px;
+}
+
+.review{
+    background:#f3f4f6;
+    padding:10px;
+    border-radius:12px;
+    margin-top:12px;
+    font-size:14px;
+}
+
+.map-link{
+    display:inline-block;
+    margin-top:12px;
+    color:#2563eb;
+    text-decoration:none;
+    font-weight:600;
+}
+
+footer{
+    text-align:center;
+    padding:40px 20px;
+    color:#6b7280;
+}
+
+@media(max-width:900px){
+    .schedule-grid{
+        grid-template-columns:1fr;
+    }
+
+    header h1{
+        font-size:30px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <h1>서울 가족여행 2박3일</h1>
+    <p>10월 감성 서울 여행 · 롯데타워 · 한강 · 박물관 중심 동선</p>
+</header>
+
+<div class="container">
+
+    <!-- DAY 1 -->
+    <section class="day-section">
+        <h2 class="day-title">DAY 1 — 잠실 & 롯데타워</h2>
+
+        <div class="schedule-grid">
+
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1538485399081-7c8972d3093f?q=80&w=1400&auto=format&fit=crop" alt="">
+                <div class="card-content">
+                    <span class="time-badge">오전 일정</span>
+                    <h3>잠실 숙소 체크인</h3>
+                    <p>
+                        석촌호수와 롯데타워 인근 가족형 숙소 추천.
+                        이동 동선을 최소화하여 편안하게 여행을 시작합니다.
+                    </p>
+
+                    <button class="recommend-btn" onclick="openModal('hotelModal')">
+                        숙소 추천 보기
+                    </button>
+                </div>
+            </div>
+
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1549693578-d683be217e58?q=80&w=1400&auto=format&fit=crop" alt="">
+                <div class="card-content">
+                    <span class="time-badge">오후 일정</span>
+                    <h3>롯데타워 & 석촌호수</h3>
+                    <p>
+                        서울스카이 전망대, 롯데월드몰,
+                        석촌호수 산책과 야경 감상.
+                    </p>
+
+                    <button class="recommend-btn" onclick="openModal('foodModal')">
+                        맛집 추천 보기
+                    </button>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- DAY 2 -->
+    <section class="day-section">
+        <h2 class="day-title">DAY 2 — 박물관 & 한강</h2>
+
+        <div class="schedule-grid">
+
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1528360983277-13d401cdc186?q=80&w=1400&auto=format&fit=crop" alt="">
+                <div class="card-content">
+                    <span class="time-badge">오전 일정</span>
+                    <h3>국립중앙박물관</h3>
+                    <p>
+                        넓고 쾌적한 실내 관람 코스.
+                        가족 모두 편안하게 관람 가능합니다.
+                    </p>
+                </div>
+            </div>
+
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1517154421773-0529f29ea451?q=80&w=1400&auto=format&fit=crop" alt="">
+                <div class="card-content">
+                    <span class="time-badge">오후 일정</span>
+                    <h3>반포한강공원 & 노을</h3>
+                    <p>
+                        한강 야경과 카페 감성 코스.
+                        달빛무지개분수와 함께 서울의 밤을 즐겨보세요.
+                    </p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- DAY 3 -->
+    <section class="day-section">
+        <h2 class="day-title">DAY 3 — 이태원 & 한남동</h2>
+
+        <div class="schedule-grid">
+
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1518391846015-55a9cc003b25?q=80&w=1400&auto=format&fit=crop" alt="">
+                <div class="card-content">
+                    <span class="time-badge">오전 일정</span>
+                    <h3>전쟁기념관 또는 리움미술관</h3>
+                    <p>
+                        역사와 현대미술 중 원하는 테마를 선택하여 관람 가능합니다.
+                    </p>
+                </div>
+            </div>
+
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?q=80&w=1400&auto=format&fit=crop" alt="">
+                <div class="card-content">
+                    <span class="time-badge">오후 일정</span>
+                    <h3>한남동 카페거리 & 쇼핑</h3>
+                    <p>
+                        여유로운 서울 감성 산책 후 귀가 일정.
+                    </p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+</div>
+
+<!-- HOTEL MODAL -->
+<div id="hotelModal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeModal('hotelModal')">&times;</span>
+
+        <h2>추천 숙소 3곳</h2>
+
+        <div class="recommend-grid">
+
+            <div class="recommend-card">
+                <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?q=80&w=1200&auto=format&fit=crop">
+                <div class="rec-content">
+                    <h4>롯데호텔 월드</h4>
+                    <p>잠실역 바로 연결 · 가족형 최고 인기</p>
+
+                    <div class="review">
+                        ⭐ 후기: “아이들과 이동이 정말 편했고 야경이 최고였습니다.”
+                    </div>
+
+                    <a class="map-link" target="_blank"
+                    href="https://maps.google.com/?q=lotte+hotel+world+seoul">
+                    지도 보기 →
+                    </a>
+                </div>
+            </div>
+
+            <div class="recommend-card">
+                <img src="https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?q=80&w=1200&auto=format&fit=crop">
+                <div class="rec-content">
+                    <h4>로사나 부티크 호텔</h4>
+                    <p>석촌호수 도보권 · 조용한 분위기</p>
+
+                    <div class="review">
+                        ⭐ 후기: “부모님과 함께 머물기 좋았습니다.”
+                    </div>
+
+                    <a class="map-link" target="_blank"
+                    href="https://maps.google.com/?q=Rosana+Boutique+Hotel+Seoul">
+                    지도 보기 →
+                    </a>
+                </div>
+            </div>
+
+            <div class="recommend-card">
+                <img src="https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?q=80&w=1200&auto=format&fit=crop">
+                <div class="rec-content">
+                    <h4>잠실상주호텔</h4>
+                    <p>가성비 우수 · 접근성 편리</p>
+
+                    <div class="review">
+                        ⭐ 후기: “깔끔하고 가족 숙박하기 편했습니다.”
+                    </div>
+
+                    <a class="map-link" target="_blank"
+                    href="https://maps.google.com/?q=Jamsil+Hotel+Seoul">
+                    지도 보기 →
+                    </a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!-- FOOD MODAL -->
+<div id="foodModal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeModal('foodModal')">&times;</span>
+
+        <h2>추천 맛집 3곳</h2>
+
+        <div class="recommend-grid">
+
+            <div class="recommend-card">
+                <img src="https://images.unsplash.com/photo-1559339352-11d035aa65de?q=80&w=1200&auto=format&fit=crop">
+                <div class="rec-content">
+                    <h4>Viking's Wharf</h4>
+                    <p>프리미엄 해산물 뷔페</p>
+
+                    <div class="review">
+                        ⭐ 후기: “가족 외식 만족도가 매우 높았습니다.”
+                    </div>
+
+                    <a class="map-link" target="_blank"
+                    href="https://maps.google.com/?q=Vikings+Wharf+Seoul">
+                    지도 보기 →
+                    </a>
+                </div>
+            </div>
+
+            <div class="recommend-card">
+                <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?q=80&w=1200&auto=format&fit=crop">
+                <div class="rec-content">
+                    <h4>Bunjiro</h4>
+                    <p>가족형 돈카츠 전문점</p>
+
+                    <div class="review">
+                        ⭐ 후기: “아이들이 정말 좋아했습니다.”
+                    </div>
+
+                    <a class="map-link" target="_blank"
+                    href="https://maps.google.com/?q=Bunjiro+Seoul">
+                    지도 보기 →
+                    </a>
+                </div>
+            </div>
+
+            <div class="recommend-card">
+                <img src="https://images.unsplash.com/photo-1552566626-52f8b828add9?q=80&w=1200&auto=format&fit=crop">
+                <div class="rec-content">
+                    <h4>P.F. Chang's</h4>
+                    <p>편하게 즐기는 중식 레스토랑</p>
+
+                    <div class="review">
+                        ⭐ 후기: “분위기와 음식 모두 만족스러웠습니다.”
+                    </div>
+
+                    <a class="map-link" target="_blank"
+                    href="https://maps.google.com/?q=P.F.+Chang's+Seoul">
+                    지도 보기 →
+                    </a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<footer>
+    서울 가족여행 GUI Planner · October Seoul Travel
+</footer>
+
+<script>
+function openModal(id){
+    document.getElementById(id).style.display = "block";
+}
+
+function closeModal(id){
+    document.getElementById(id).style.display = "none";
+}
+
+window.onclick = function(event){
+    const hotelModal = document.getElementById('hotelModal');
+    const foodModal = document.getElementById('foodModal');
+
+    if(event.target === hotelModal){
+        hotelModal.style.display = "none";
+    }
+
+    if(event.target === foodModal){
+        foodModal.style.display = "none";
+    }
+}
+</script>
+
+</body>
+</html>
